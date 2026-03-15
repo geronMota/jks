@@ -2,10 +2,26 @@ pipeline {
     agent any
 
     stages {
-        stage('Teste') {
+
+        stage('Checkout') {
             steps {
-                echo 'Pipeline funcionando'
+                echo 'Baixando código do GitHub'
             }
         }
+
+        stage('Build') {
+            steps {
+                echo 'Compilando projeto'
+                bat 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Executando testes'
+                bat 'mvn test'
+            }
+        }
+
     }
 }
